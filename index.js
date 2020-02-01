@@ -1,7 +1,7 @@
 //Converts text files from http://www.sourcecode.se/sokoban/levels to JSON
 
 let fs = require("fs")
-fs.readFile('Original.txt', 'utf8', (err, data) => {
+fs.readFile('Sokoban_Junior_1.txt', 'utf8', (err, data) => {
     fs.writeFile('newFile.json', JSON.stringify(convertToJSON(data)), err => {
         if(err) console.log(err)
         else console.log('Conversion successful!')
@@ -9,13 +9,13 @@ fs.readFile('Original.txt', 'utf8', (err, data) => {
 })
 
 function splitLevels(levels) {
-    let newLevels = levels.split("\n\r\n")
+    let newLevels = levels.split(/\n\r\n|\n\n/)
     newLevels = newLevels.filter(string => string.length > 0)
     return newLevels
 }
 
 function splitLines(level) {
-    let newLevel = level.split('\r\n')
+    let newLevel = level.split(/\r\n|\r|\n/)
     newLevel = newLevel.filter(string => string[0] !== ';')
     return newLevel
 }
