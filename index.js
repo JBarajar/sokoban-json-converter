@@ -2,7 +2,6 @@
 
 let fs = require("fs")
 fs.readFile('Original.txt', 'utf8', (err, data) => {
-    //console.log(data)
     fs.writeFile('newFile.json', JSON.stringify(convertToJSON(data)), err => {
         if(err) console.log(err)
         else console.log('Conversion successful!')
@@ -16,7 +15,7 @@ function splitLevels(levels) {
 }
 
 function splitLines(level) {
-    let newLevel = level.split('\n')
+    let newLevel = level.split('\r\n')
     newLevel = newLevel.filter(string => string[0] !== ';')
     return newLevel
 }
